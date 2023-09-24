@@ -9,23 +9,20 @@ long int dfactorial (int n){
 	return n * dfactorial(n-2);
 }
 
-double calculate_t(float x){
-	long double temp1 = 0;
-	long double temp2 = 0;
-	int k;
-	double result;
-	for (k = 0; k <= 10; k++){
-		temp1 += (pow(x, 2*k + 1)) / (dfactorial(2*k+1));
-		temp2 += (pow(x,2*k)) / (dfactorial(2*k));
+double calculateT(float x){
+	long double numerator = 0;
+	long double denominator = 0;
+	for (int k = 0; k <= 10; k++){
+		numerator += (pow(x, 2*k + 1)) / (dfactorial(2*k+1));
+		denominator += (pow(x,2*k)) / (dfactorial(2*k));
 	}
-	result = temp1/temp2;
-	return result;
+	return numerator/denominator;
 }
 
 int main(){
 	double y;
 	cout << "Введите y:"; cin >> y;
-	double total = (7 * calculate_t(0.25) + 2 * calculate_t(1 + y)) / (6 - calculate_t(pow(y,2) - 1));
+	double total = (7 * calculateT(0.25) + 2 * calculateT(1 + y)) / (6 - calculateT(pow(y,2) - 1));
 	cout << total;
 	return 0;
 }
